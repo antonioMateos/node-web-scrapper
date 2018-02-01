@@ -1,7 +1,12 @@
-# node-web-scrapper
+node-web-scraper
+================
 
-Basic node web scrapper from => scotch-io/node-web-scraper.git
+Simple web scraper to get a movie name, release year and community rating from IMDB.
+To run this example use the following commands:
 
-- - - -
+``` shell
+$ npm install
+$ node server.js
+```
 
-material + socket.io + node + cheerio
+ Then it will start up our node server, navigate to http://localhost:8081/scrape and see what happens.
