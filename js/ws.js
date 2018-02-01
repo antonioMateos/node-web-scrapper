@@ -13,7 +13,19 @@ $('#start-btn').click(function(){
 	var url = $('#input-url').val(); // <-- Get URL
 	var tag = $('#input-tag').val();	// <-- Get HTML TAG
 	//console.log("Q",getURL,tag);
-	socket.emit('start',url,tag); 	// Send DATA to server Scrap
+
+	cleanRespBox(); // <-- Clean response box at the begininng
+
+	if(url != "" && tag != ""){
+
+		feedback("pending");
+		socket.emit('start',url,tag); 	// Send DATA to server Scrap
+
+	} else {
+
+		feedback("error001");
+
+	}
 
 });
 
@@ -27,8 +39,7 @@ socket.on("response", function(newResp){
 //PRINT CALL ANSWER
 function processAnswer(data){
 
-	cleanRespBox(); // <-- Clean response box at the begininng
-	
+	feedback("success");	
 	//console.log(data);
 
 	var l = data.length;
@@ -75,3 +86,29 @@ function cleanRespBox() {
 	//Refresh ul tweetList
 	$('#response').html("");
 };
+
+//FEEDBACK 
+function feedback(type){
+
+	$('.feedback h5').removeClass(); // Remove all classes!
+
+	var msg;
+
+	if(type==="error001"){
+		type = "error";
+		msg = "ERROR!: Empty inputs!";
+	}
+
+	if(type==="success"){
+		msg = "SUCCESS!";
+	}
+
+	if(type==="pending"){
+		msg = "Please, wait...";
+	}
+
+	$('.feedback h5').text(msg);
+	type = "title "+type;
+	$('.feedback h5').addClass(type);
+
+}

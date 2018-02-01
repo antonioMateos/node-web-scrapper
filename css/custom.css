@@ -294,6 +294,17 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
   border-bottom-color: #1da1f2;
 }
 
+i.prefix {
+  opacity: 1;
+  color: #1da1f2;
+}
+
+input.with-icon {
+  width: calc(100% - 40px) !important;
+  margin-left: 30px !important;
+  margin-top: -40px !important;
+}
+
 /* CUSTOM STYLES */
 .main-background {
   background: url("../images/bg-01.jpg") no-repeat right 60px fixed;
@@ -475,13 +486,18 @@ main.streaming .btn-stop {
   font-weight: bold;
 }
 
-.response-msg.error {
-  background-color: #ee6e73;
+.feedback .error {
+  color: #ee6e73;
 }
 
-.response-msg.success {
-  background-color: #00cece;
+.feedback .success {
+  color: #1da1f2;
 }
+
+.feedback .pending {
+  color: #003E58;
+}
+
 
 /* END CUSTOM STYLES */
 /* MEDIA QUERIES */
