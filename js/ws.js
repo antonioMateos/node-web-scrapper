@@ -40,7 +40,7 @@ socket.on("response", function(newResp){
 function processAnswer(data){
 
 	feedback("success");	
-	//console.log(data);
+	console.log(data);
 
 	var l = data.length;
 
@@ -63,7 +63,9 @@ function printAnswer(data){
 	*/
 	//c = c + 1;
 	//console.log(c);
-	$('#response').append('<p class="answer">'+data.id+" : <b>"+data.nombre+"</b></p>");
+	$('#response').append('<p class="answer">'+data+"</p>");
+	// PLAYA ESPECIFICO
+	//$('#response').append('<p class="answer">'+data.id+" : <b>"+data.nombre+"</b></p>");
 }
 
 $('#stop-btn').click(function(){

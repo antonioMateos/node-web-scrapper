@@ -37,6 +37,7 @@ io.on('connection', function(socket){
             //console.log(tag);
             var data = $(this);
             
+            /* PLAYAS ESPECIFICO
             var provincia = data.text();
             var id = data.attr('value');
 
@@ -49,8 +50,12 @@ io.on('connection', function(socket){
               respArr.push(obj);
               //console.log("DATA SCRPD:",obj);
             }
+            */
+
+            respArr.push(data.html());
 
           })
+
 
           // DEMO SELECTORS
           /*
