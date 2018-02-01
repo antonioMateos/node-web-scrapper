@@ -8,6 +8,8 @@ socket.on("connect", function(msg){
 
 // START <> STOP Streaming
 // TO DO --> Add key press font intro on search!!!
+var ansCounter;
+
 $('#start-btn').click(function(){
 
 	var url = $('#input-url').val(); // <-- Get URL
@@ -19,6 +21,8 @@ $('#start-btn').click(function(){
 	if(url != "" && tag != ""){
 
 		feedback("pending");
+		ansCounter = 0;
+		addCount(ansCounter);
 		socket.emit('start',url,tag); 	// Send DATA to server Scrap
 
 	} else {
@@ -39,6 +43,8 @@ socket.on("response", function(newResp){
 //PRINT CALL ANSWER
 function processAnswer(data){
 
+	if(data != ""){
+
 	feedback("success");	
 	console.log(data);
 
@@ -46,22 +52,20 @@ function processAnswer(data){
 
 	for(var i=0; i<l; i++){
 		//console.log(data[i].id,data[i].nombre);
+		$('.counter').show();
 		printAnswer(data[i]);
+	}
+
+	}else{
+		feedback("error002");
 	}
 
 	//$('#response p').prepend('<span class="answer">'+JSON.stringify(responseTemplate)+"</span>"); // FOR PROTOTYPE PURPOSES ONLY
 }
 
-//var c = 0;
 function printAnswer(data){
-	/*
-	var responseTemplate = '<li>'+
-	'<p><b>Datos </b><br>'+data+'</p>'
-	'<p>URL Meta Datos '+metadata+'</p>'+
-	'<p>'+info+'</p>'+
-	'</li>';
-	*/
-	//c = c + 1;
+	ansCounter = ansCounter + 1;
+	addCount(ansCounter);
 	//console.log(c);
 	$('#response').append('<p class="answer">'+data+"</p>");
 	// PLAYA ESPECIFICO
@@ -83,6 +87,10 @@ function stats() {
 	$('.stats p span').text(nt);
 }
 
+function addCount(counter){
+	$('.counter p span').text(counter);
+}
+
 // REFRESH Tw List
 function cleanRespBox() {
 	//Refresh ul tweetList
@@ -99,6 +107,11 @@ function feedback(type){
 	if(type==="error001"){
 		type = "error";
 		msg = "ERROR!: Empty inputs!";
+	}
+
+	if(type==="error002"){
+		type = "error";
+		msg = "SORRY! Nothing matches your query!";
 	}
 
 	if(type==="success"){

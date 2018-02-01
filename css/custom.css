@@ -378,12 +378,12 @@ main .title span {
   padding-right: .5rem;
 }
 
-main .stats p {
+main .stats p, main .counter p {
   padding: .75rem;
   padding-bottom: 0;
 }
 
-main .stats p span {
+main .stats p span, main .counter p span {
   font-size: 1.5em;
   font-weight: bold;
   color: #009fe2;
@@ -395,14 +395,15 @@ main .stats p span:hover {
 
 main .stats p span:before {
   display: inline;
-  content: "\f112";
+  content: "\f002";
   font-family: "Fontawesome";
-  color: #006995;
+  color: #ccc;
   width: 30px;
   height: 30px;
+  font-size: 0.8em;
+  margin-right: 3px;
+  top: -2px;
   position: relative;
-  font-size: 1em;
-  margin-right: 2px;
 }
 
 main .answersBox {

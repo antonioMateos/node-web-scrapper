@@ -22,7 +22,8 @@ io.on('connection', function(socket){
     var tag = html; //var tag = "#provincia_selector option";
     //console.log("\nREADING URL::",data,html+"\n");
 
-    request({uri:url, encoding: 'binary'}, function(error, response, html){
+    //PLAYA ESPECIFICO => encoding: 'binary'
+    request({uri:url, encoding: 'utf8'}, function(error, response, html){
 
         var respArr = [];
 
@@ -52,7 +53,8 @@ io.on('connection', function(socket){
             }
             */
 
-            respArr.push(data.html());
+            //respArr.push(data.html());
+            respArr.push(data.text());
 
           })
 
