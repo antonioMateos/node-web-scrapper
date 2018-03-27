@@ -31,6 +31,19 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDYph0nhagGJ_YzlEaPvaqCiSDrdvCIDPI",
+        authDomain: "beach-plea.firebaseapp.com",
+        databaseURL: "https://beach-plea.firebaseio.com",
+        projectId: "beach-plea",
+        storageBucket: "beach-plea.appspot.com",
+        messagingSenderId: "151890177145"
+      };
+      firebase.initializeApp(config);
+    </script>
 
 </head>
 
@@ -75,7 +88,17 @@
 
             <div class="row mts mbl">
 
-                <div class="col s7">
+                <div class="col s2">
+                    <div class="mbs">
+                        <i class="material-icons prefix">beach_access</i>
+                        <input type="text" id="input-pid" class="term-input left with-icon" placeholder="Pid" />
+                        <!--<select>
+                            <option value=""></option>
+                        </select>-->
+                    </div>
+                </div>
+
+                <div class="col s5">
                     <div class="mbs">
                         <i class="material-icons prefix">web</i>
                         <input type="text" id="input-url" class="term-input left with-icon" placeholder="Please, type the url you wanna scrap from!" />

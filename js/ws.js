@@ -10,8 +10,72 @@ socket.on("connect", function(msg){
 // TO DO --> Add key press font intro on search!!!
 var ansCounter;
 
+var p = [
+{id:15, nombre:"A Coruña",localidades:""},
+{id:03, nombre:"Alacant/Alicante",localidades:""},
+{id:04, nombre:"Almería",localidades:""},
+{id:33, nombre:"Asturias",localidades:""},
+{id:08, nombre:"Barcelona",localidades:""},
+{id:48, nombre:"Bizkaia",localidades:""},
+{id:11, nombre:"Cádiz",localidades:""},
+{id:39, nombre:"Cantabria",localidades:""},
+{id:12, nombre:"Castelló/Castellón",localidades:""},
+{id:51, nombre:"Ceuta",localidades:""},
+{id:20, nombre:"Gipuzkoa",localidades:""},
+{id:17, nombre:"Girona",localidades:""},
+{id:18, nombre:"Granada",localidades:""},
+{id:21, nombre:"Huelva",localidades:""},
+{id:07, nombre:"Illes Balears",localidades:""},
+{id:35, nombre:"Las Palmas",localidades:""},
+{id:27, nombre:"Lugo",localidades:""},
+{id:29, nombre:"Málaga",localidades:""},
+{id:52, nombre:"Melilla",localidades:""},
+{id:30, nombre:"Murcia",localidades:""},
+{id:36, nombre:"Pontevedra",localidades:""},
+{id:38, nombre:"Santa Cruz de Tenerife",localidades:""},
+{id:43, nombre:"Tarragona",localidades:""},
+{id:46, nombre:"València/Valencia",localidades:""}
+];
+
+var pL = p.length;
+
+// LOOPED CALL
 $('#start-btn').click(function(){
 
+	//console.log("CLICK");
+
+	var w;
+	var url = "http://www.aemet.es/es/eltiempo/prediccion/playas?p=" // <-- Get URL
+	var tag = "#datos_selector optgroup option";	// <-- Get HTML TAG
+	//var parentTag = "#provincia_selector option";
+
+	for(var i=0; i<pL; i++){
+
+		w = p[i].id;
+		var pName = p[i].nombre
+		//console.log(w);
+
+		if(url != "" && tag != ""){
+
+			feedback("pending");
+			ansCounter = 0;
+			addCount(ansCounter);
+			socket.emit('start',url,tag,w,pName); 	// Send DATA to server Scrap
+
+		} else {
+
+			feedback("error001");
+
+		}
+
+	}
+
+});
+
+/*
+$('#start-btn').click(function(){
+
+	// var p = $('#input-pid').val(); // PROVINCE ID
 	var url = $('#input-url').val(); // <-- Get URL
 	var tag = $('#input-tag').val();	// <-- Get HTML TAG
 	//console.log("Q",getURL,tag);
@@ -23,7 +87,7 @@ $('#start-btn').click(function(){
 		feedback("pending");
 		ansCounter = 0;
 		addCount(ansCounter);
-		socket.emit('start',url,tag); 	// Send DATA to server Scrap
+		socket.emit('start',url,tag,p); 	// Send DATA to server Scrap
 
 	} else {
 
@@ -32,6 +96,7 @@ $('#start-btn').click(function(){
 	}
 
 });
+*/
 
 socket.on("response", function(newResp){
 
